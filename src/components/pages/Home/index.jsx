@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { useDiaryStateContext } from "../../../context/DiaryProvider";
 
-import Header from "../../layout/Header";
-import Button from "../../Button";
-import DiaryList from "../../DiaryList";
-import LeftChevronSVG from "../../../assets/leftChevron.svg?react";
-import RightChevronSVG from "../../../assets/rightChevron.svg?react";
+import Header from "@components/layout/Header";
+import Button from "@components/Button";
+import DiaryList from "@components/DiaryList";
+
+import LeftChevronSVG from "@/assets/leftChevron.svg?react";
+import RightChevronSVG from "@/assets/rightChevron.svg?react";
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -15,8 +16,17 @@ const Home = () => {
 
   useEffect(() => {
     if (diaryList.length >= 1) {
-      const FIRST_DATE = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getTime();
-      const LAST_DATE = new Date(currentDate.getFullYear(), currentDate.getMonth()+1, 0).getTime();
+      const FIRST_DATE = new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        1
+      ).getTime();
+      
+      const LAST_DATE = new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth() + 1,
+        0
+      ).getTime();
 
       setData(
         diaryList.filter((el) => FIRST_DATE <= el.date && el.date <= LAST_DATE)
