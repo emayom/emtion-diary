@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useDiaryStateContext } from "../../../context/DiaryProvider";
+import { useDiaryStateContext } from "@/context/DiaryProvider";
 
-import Header from "../../layout/Header";
-import Button from "../../Button";
-import DiaryEditor from "../../DiaryEditor";
+import Header from "@components/layout/Header";
+import Button from "@components/Button";
+import DiaryEditor from "@components/DiaryEditor";
 
 const Edit = () => {
   const navigate = useNavigate();
