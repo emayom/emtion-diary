@@ -8,9 +8,9 @@ import DiaryEditor from "../../DiaryEditor";
 
 const Edit = () => {
   const navigate = useNavigate();
-  const [origin, setOrigin] = useState();
-
   const { id } = useParams();
+  const [origin, setOrigin] = useState();
+  
   const diaryList = useDiaryStateContext();
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const Edit = () => {
       >
         일기 수정하기
       </Header>
-      {origin && <DiaryEditor mode="edit" data={origin}></DiaryEditor>}
+      {origin && <DiaryEditor isEdit={true} data={origin}></DiaryEditor>}
     </>
   );
 };
