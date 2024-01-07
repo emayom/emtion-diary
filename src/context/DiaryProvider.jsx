@@ -1,13 +1,19 @@
-import React, { useContext, useReducer } from "react";
+import React, { useContext, useEffect, useReducer } from "react";
 
-export const reducer = (state, action) => {
-  return {
+const reducer = (state, action) => {
+  const newState = {
     INIT: () => action.data,
     CREATE: () => [{ ...action.data }, ...state],
     REMOVE: () => state.filter((el) => el.id !== parseInt(action.targetId)),
     EDIT: () =>
       state.map((el) => (el.id === action.targetId ? { ...action.data } : el)),
   }[action.type]();
+
+  if(action.type !== "INIT"){
+    localStorage.setItem('emotion-diary', JSON.stringify(newState));
+  }
+
+  return newState;
 };
 
 export const DiaryStateContext = React.createContext();
@@ -17,13 +23,11 @@ export const DiaryProvider = ({ children }) => {
   const [data, dispatch] = useReducer(reducer, []);
 
   const onCreate = ({ date, title, content, emotion }) => {
-    const timestamp = new Date(date).getTime();
-
     dispatch({
       type: "CREATE",
       data: {
-        id: timestamp,
-        date: timestamp,
+        id:  new Date().getTime(),
+        date:  new Date(date).getTime(),
         title,
         content,
         emotion,
@@ -44,6 +48,13 @@ export const DiaryProvider = ({ children }) => {
       },
     });
   };
+
+  useEffect(() => {
+    dispatch({
+      type: "INIT",
+      data: JSON.parse(localStorage.getItem('emotion-diary')),
+    })
+  }, [])
 
   return (
     <DiaryStateContext.Provider value={data}>
