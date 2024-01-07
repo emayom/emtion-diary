@@ -6,7 +6,7 @@ const reducer = (state, action) => {
     CREATE: () => [{ ...action.data }, ...state],
     REMOVE: () => state.filter((el) => el.id !== parseInt(action.targetId)),
     EDIT: () =>
-      state.map((el) => (el.id === action.targetId ? { ...action.data } : el)),
+      state.map((el) => (el.id === parseInt(action.targetId) ? { ...action.data } : el)),
   }[action.type]();
 
   if(action.type !== "INIT"){
@@ -37,12 +37,14 @@ export const DiaryProvider = ({ children }) => {
 
   const onRemove = (targetId) => dispatch({ type: "REMOVE", targetId })
 
-  const onEdit = (targeId, date, content, emotion) => {
+  const onEdit = (targetId, { title, date, content, emotion }) => {
     dispatch({
       type: "EDIT",
+      targetId,
       data: {
-        id: targeId,
+        id: targetId,
         date: new Date(date).getTime(),
+        title,
         content,
         emotion,
       },
