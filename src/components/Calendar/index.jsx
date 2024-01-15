@@ -10,7 +10,7 @@ import * as styles from "./styles.css";
 import CalendarGrid from "./CalendarGrid";
 
 const Calendar = ({ value, focus, data, onChange, onFocusChange }) => {
-  const [calendar] = useCalendar(value);
+  const calendar = useCalendar(value);
 
   const handleViewDate = (to) => {
     onChange(

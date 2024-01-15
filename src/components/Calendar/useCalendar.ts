@@ -25,15 +25,14 @@ const getCalendarCellLength = (days: number, startAt: number) =>
  * [[1주차], [2주차], [3주차], [4주차], [5주차]]
  */
 const useCalendar = (initValue: Date) => {
-  const [current, setCurrent] = useState(startOfMonth(initValue));
   const [calendar, setCalendar] = useState<(Date | null)[][]>([]);
 
   useEffect(() => {
     /** 해당 달의 일수 */
-    const NUMBER_OF_DAYS = getDaysInMonth(current);
+    const NUMBER_OF_DAYS = getDaysInMonth(initValue);
 
     /** 캘린더 1일 시작 위치 */
-    const START_AT = getDay(current);
+    const START_AT = getDay(startOfMonth(initValue));
 
     /** 캘린더 배열 길이 */
     const CALENDER_LENGTH = getCalendarCellLength(NUMBER_OF_DAYS, START_AT);
@@ -47,7 +46,9 @@ const useCalendar = (initValue: Date) => {
     setCalendar(
       chunk(
         prev.concat(
-          [...Array(NUMBER_OF_DAYS)].map((_, i) => add(current, { days: i })),
+          [...Array(NUMBER_OF_DAYS)].map((_, i) =>
+            add(startOfMonth(initValue), { days: i })
+          ),
           subseq
         ),
         DAY_OF_WEEK
@@ -55,7 +56,7 @@ const useCalendar = (initValue: Date) => {
     );
   }, [initValue]);
 
-  return [calendar, current, setCurrent];
+  return calendar;
 };
 
 export default useCalendar;
