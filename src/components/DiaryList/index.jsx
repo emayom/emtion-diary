@@ -1,22 +1,27 @@
+import { useNavigate } from "react-router-dom";
+
+import DiaryItem from "./DiaryItem";
+
 import clsx from "clsx";
 import * as styles from "./styles.css";
-import DiaryItem from "../DiaryItem";
-import { flexContainer, flexWrap, font, gap, text } from "../../styles/style.css";
+import { flexWrap, gap } from "@styles/style.css";
 
-const DiaryList = ({ lists = [] }) => {
+const DiaryList = ({ data = [], markdate = false }) => {
+  const navigate = useNavigate();
+
   return (
     <div className={styles.dirayListContainer}>
-      <div className={clsx(flexContainer.row, gap.sm)}>
-        <h2 className={clsx(text.lg, text.primary, font.bold)}>지난 일기</h2>
-        <span className={clsx(text.base, text.secondary)}>{lists.length}개</span>
-      </div>
       <ul className={clsx(flexWrap, gap.md)}>
-        {lists.map(({ id, title, content, createdDate }) => (
+        {data.map(({ id, date, title, content, emotion }) => (
           <DiaryItem
             key={id}
+            id={id}
+            date={date}
             title={title}
             content={content}
-            createdDate={createdDate}
+            emotion={emotion}
+            markdate={markdate}
+            onClick={() => navigate(`/diary/${id}`)}
           />
         ))}
       </ul>
