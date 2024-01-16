@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css";
-import { border, flexContainer } from "../../../styles/style.css";
+import { border, flexContainer } from "../../styles/style.css";
 
 export const header = style([
   border,
@@ -8,7 +8,7 @@ export const header = style([
     alignItems: "center",
     justifyContent: "space-between",
     borderBottomWidth: "1px",
-    padding: "1rem 2rem",
+    padding: "1rem 0",
   },
 ]);
 
