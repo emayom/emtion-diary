@@ -21,8 +21,7 @@ export const calendarWeekdayGrid = style([
   {
     selectors: {
       [`${calendar} &`]: {
-        display: "grid",
-        gridTemplateColumns: "repeat(7, 1fr)",
+        display: "flex",
         padding: "1rem 0 0 0",
       },
     },
@@ -31,23 +30,24 @@ export const calendarWeekdayGrid = style([
 
 export const calendarTile = style([
   {
+    flex: "0 0 14.2857%",
+    overflow: "hidden",
+    maxWidth: "100%",
+    fontSize: "inherit",
+    textAlign: "center",
+    boxSizing: "border-box",
     selectors: {
-      [`${calendar} &`]: {
+      [`${calendarWeekdayGrid} &`]: {},
+      [`${calendarMonthGrid} &`]: {
         flex: "0 0 14.2857%",
-        overflow: "hidden",
-        textAlign: "center",
-        maxWidth: "100%",
-        padding: "0.5rem",
-        boxSizing: "border-box",
+        padding: ".75rem 0",
         background: "none",
-        fontSize: "inherit",
-        aspectRatio: "1 / 1",
       },
       [`${calendar} &.selected`]: {
         background: "blue",
       },
       [`${calendar} &:nth-child(7n)`]: {
-        color: "#f27878",
+        color: "#77aaff",
       },
       [`${calendar} &:nth-child(7n+1)`]: {
         color: "#f27878",
@@ -59,7 +59,9 @@ export const calendarTile = style([
 export const calendarDate = style({
   selectors: {
     [`${calendar} &`]: {
-      display: "block",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
       width: 16,
       height: 16,
       borderRadius: 16,

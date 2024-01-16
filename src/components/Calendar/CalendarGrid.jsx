@@ -18,7 +18,6 @@ const CalendarGrid = ({ calendar, focus, onFocusChange }) => {
             title={day}
             aria-label={day}
             className={styles.calendarTile}
-            style={{ aspectRatio: "unset", color: "inherit" }}
           >
             {day}
           </div>
@@ -33,7 +32,7 @@ const CalendarGrid = ({ calendar, focus, onFocusChange }) => {
                   key={date}
                   date={date}
                   isSelected={isSameDay(focus, date)}
-                  onClick={() => onFocusChange(date)}
+                  onClick={onFocusChange}
                 />
               ) : (
                 <div key={i} className={styles.calendarTile} />

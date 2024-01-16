@@ -9,7 +9,7 @@ const CalendarCell = ({ date, isSelected, onClick }) => {
     <button
       className={clsx(reset, styles.calendarTile)}
       data-value={format(date, "yyyy-MM-dd")}
-      onClick={onClick}
+      onClick={() => onClick(date)}
     >
       <abbr
         className={clsx(styles.calendarDate, isSelected && "selected")}
