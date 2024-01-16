@@ -3,8 +3,8 @@ import useCalendar from "./useCalendar";
 import Header from "@components/layout/Header";
 import Button from "@components/Button";
 
-import LeftChevronSVG from "@/assets/leftChevron.svg?react";
-import RightChevronSVG from "@/assets/rightChevron.svg?react";
+import LeftChevronSVG from "@assets/left-chevron.svg?react";
+import RightChevronSVG from "@assets/right-chevron.svg?react";
 
 import * as styles from "./styles.css";
 import CalendarGrid from "./CalendarGrid";
