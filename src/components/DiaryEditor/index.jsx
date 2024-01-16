@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDiaryDispatchContext } from "../../context/DiaryProvider";
+import { format } from "date-fns";
 
-import Button from "../Button";
-import EmotionItem from "../EmotionItem";
+import { useDiaryDispatchContext } from "@context/DiaryProvider";
+
 import { emojis } from "../../data.json";
-import { parseDateToISOString } from "../../util";
+
+import Button from "@components/Button";
+import EmotionItem from "@components/EmotionItem";
 
 import clsx from "clsx";
 import * as styles from "./styles.css";
@@ -13,9 +15,11 @@ import { text } from "../../styles/style.css";
 
 const DiaryEditor = ({ isEdit = false, data }) => {
   const navigate = useNavigate();
+
   const { onCreate, onEdit } = useDiaryDispatchContext();
+
   const [state, setState] = useState({
-    date: parseDateToISOString(new Date()),
+    date: format(new Date(), "yyyy-MM-dd"),
     title: "",
     content: "",
     emotion: 3,
@@ -57,7 +61,7 @@ const DiaryEditor = ({ isEdit = false, data }) => {
       const { date, title, content, emotion } = data;
 
       setState({
-        date: parseDateToISOString(date),
+        date: format(date, "yyyy-MM-dd"),
         title,
         content,
         emotion,
