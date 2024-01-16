@@ -24,15 +24,15 @@ const getCalendarCellLength = (days: number, startAt: number) =>
  * 5주를 기준으로 2차원 배열의 달력 배열을 리턴한다.
  * [[1주차], [2주차], [3주차], [4주차], [5주차]]
  */
-const useCalendar = (initValue: Date) => {
+const useCalendar = (initialState: Date) => {
   const [calendar, setCalendar] = useState<(Date | null)[][]>([]);
 
   useEffect(() => {
     /** 해당 달의 일수 */
-    const NUMBER_OF_DAYS = getDaysInMonth(initValue);
+    const NUMBER_OF_DAYS = getDaysInMonth(initialState);
 
     /** 캘린더 1일 시작 위치 */
-    const START_AT = getDay(startOfMonth(initValue));
+    const START_AT = getDay(startOfMonth(initialState));
 
     /** 캘린더 배열 길이 */
     const CALENDER_LENGTH = getCalendarCellLength(NUMBER_OF_DAYS, START_AT);
@@ -47,14 +47,14 @@ const useCalendar = (initValue: Date) => {
       chunk(
         prev.concat(
           [...Array(NUMBER_OF_DAYS)].map((_, i) =>
-            add(startOfMonth(initValue), { days: i })
+            add(startOfMonth(initialState), { days: i })
           ),
           subseq
         ),
         DAY_OF_WEEK
       )
     );
-  }, [initValue]);
+  }, [initialState]);
 
   return calendar;
 };

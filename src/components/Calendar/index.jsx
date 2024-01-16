@@ -22,12 +22,12 @@ const Calendar = ({ value, focus, data, onChange, onFocusChange }) => {
     <div className={styles.calendar}>
       <Header
         leftChild={
-          <Button onClick={() => handleViewDate(-1)}>
+          <Button variant="icon" onClick={() => handleViewDate(-1)}>
             <LeftChevronSVG width="15" height="15" />
           </Button>
         }
         rightChild={
-          <Button onClick={() => handleViewDate(+1)}>
+          <Button variant="icon" onClick={() => handleViewDate(+1)}>
             <RightChevronSVG width="15" height="15" />
           </Button>
         }

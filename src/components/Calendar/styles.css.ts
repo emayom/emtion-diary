@@ -2,7 +2,6 @@ import { style } from "@vanilla-extract/css";
 import { text } from "../../styles/style.css";
 
 export const calendar = style({
-  padding: "2rem",
   textAlign: "center",
 });
 
