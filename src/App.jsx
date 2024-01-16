@@ -1,10 +1,10 @@
 import { Routes, Route } from "react-router-dom";
 
-import Layout from "@components/Layout";
-import Home from "@components/pages/Home";
-import Edit from "@components/pages/Edit";
-import Diary from "@components/pages/Diary";
+import Home from "./pages/Home";
+import Edit from "./pages/Edit";
+import Diary from "./pages/Diary";
 
+import Layout from "@components/Layout";
 import DiaryEditor from "@components/DiaryEditor";
 
 import "./App.css";
