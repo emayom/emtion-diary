@@ -1,6 +1,6 @@
 import useCalendar from "./useCalendar";
 
-import Header from "@components/layout/Header";
+import Header from "@components/Header";
 import Button from "@components/Button";
 
 import LeftChevronSVG from "@assets/left-chevron.svg?react";
